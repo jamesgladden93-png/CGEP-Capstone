@@ -1,3 +1,4 @@
+# main.tf
 terraform {
   required_version = ">= 1.6"
   required_providers {
@@ -13,8 +14,8 @@ provider "aws" {
   # taggable resource by default. Removes the chance of forgetting them.
   default_tags {
     tags = {
-      Project         = {"project_name"}
-      Environment     = {"environment"}
+      Project         = var.project_name
+      Environment     = var.environment
       ManagedBy       = "terraform"
       ComplianceScope = "cge-p-lab"
     }
@@ -26,15 +27,14 @@ resource "random_id" "bucket_suffix" {
 }
 
 locals {
-  effective_suffix = {"bucket_suffix"} != "" ? {"bucket_suffix"} : {"random_id.bucket_suffix.hex"}
-  primary_name     = "${project_name}-${environment}-data-${local.effective_suffix}"
-  log_name         = "${project_name}-${environment}-logs-${local.effective_suffix}"
+  effective_suffix = var.bucket_suffix != "" ? var.bucket_suffix : random_id.bucket_suffix.hex
+  primary_name     = "${var.project_name}-${var.environment}-data-${local.effective_suffix}"
+  log_name         = "${var.project_name}-${var.environment}-logs-${local.effective_suffix}"
 }
 
 resource "aws_s3_bucket" "primary" {
   bucket = local.primary_name
 }
-
 # main.tf (continued)
 
 # SC-28: Protection of information at rest.
