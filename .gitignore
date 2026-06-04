@@ -1,0 +1,23 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+*.tfplan
+tfplan
+
+# Evidence/generated artifacts
+bundle-*.tar.gz
+*.sig.bundle
+
+# Local/editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Credentials
+*.pem
+*.key
