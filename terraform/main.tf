@@ -25,14 +25,25 @@ locals {
   vault_name = "${var.project_name}-grc-evidence-vault-${random_id.suffix.hex}"
 }
 
+resource "aws_kms_key" "vault" {
+  description             = "Customer-managed key for ${local.vault_name} evidence vault"
+  enable_key_rotation     = true
+  deletion_window_in_days = 7
+}
+
+resource "aws_kms_alias" "vault" {
+  name          = "alias/${local.vault_name}"
+  target_key_id = aws_kms_key.vault.key_id
+}
+
 resource "aws_s3_bucket" "vault" {
   bucket              = local.vault_name
-  object_lock_enabled = true        # MUST be set at bucket creation
+  object_lock_enabled = true # MUST be set at bucket creation
 }
 
 resource "aws_s3_bucket_versioning" "vault" {
   bucket = aws_s3_bucket.vault.id
-  versioning_configuration { status = "Enabled" }   # Object Lock requires versioning
+  versioning_configuration { status = "Enabled" } # Object Lock requires versioning
 }
 
 resource "aws_s3_bucket_object_lock_configuration" "vault" {
@@ -40,7 +51,7 @@ resource "aws_s3_bucket_object_lock_configuration" "vault" {
 
   rule {
     default_retention {
-      mode = var.lock_mode           # GOVERNANCE for labs, COMPLIANCE for production
+      mode = var.lock_mode # GOVERNANCE for labs, COMPLIANCE for production
       days = var.retention_days
     }
   }
@@ -51,7 +62,11 @@ resource "aws_s3_bucket_object_lock_configuration" "vault" {
 resource "aws_s3_bucket_server_side_encryption_configuration" "vault" {
   bucket = aws_s3_bucket.vault.id
   rule {
-    apply_server_side_encryption_by_default { sse_algorithm = "AES256" }
+    apply_server_side_encryption_by_default {
+      sse_algorithm     = "aws:kms"
+      kms_master_key_id = aws_kms_key.vault.arn
+    }
+    bucket_key_enabled = true
   }
 }
 
