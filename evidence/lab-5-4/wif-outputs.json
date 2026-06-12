@@ -1,0 +1,12 @@
+{
+  "gha_service_account": {
+    "sensitive": false,
+    "type": "string",
+    "value": "cgep-grc-gate-sa@lab-24-grcengineer.iam.gserviceaccount.com"
+  },
+  "wif_provider": {
+    "sensitive": false,
+    "type": "string",
+    "value": "projects/870067517337/locations/global/workloadIdentityPools/github-actions/providers/github"
+  }
+}

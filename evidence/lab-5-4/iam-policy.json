@@ -1,0 +1,110 @@
+{
+  "auditConfigs": [
+    {
+      "auditLogConfigs": [
+        {
+          "logType": "ADMIN_READ"
+        },
+        {
+          "logType": "DATA_WRITE"
+        },
+        {
+          "logType": "DATA_READ"
+        }
+      ],
+      "service": "storage.googleapis.com"
+    },
+    {
+      "auditLogConfigs": [
+        {
+          "logType": "DATA_WRITE"
+        },
+        {
+          "logType": "DATA_READ"
+        },
+        {
+          "logType": "ADMIN_READ"
+        }
+      ],
+      "service": "cloudkms.googleapis.com"
+    },
+    {
+      "auditLogConfigs": [
+        {
+          "logType": "DATA_WRITE"
+        },
+        {
+          "logType": "DATA_READ"
+        },
+        {
+          "logType": "ADMIN_READ"
+        }
+      ],
+      "service": "iam.googleapis.com"
+    }
+  ],
+  "bindings": [
+    {
+      "members": [
+        "user:jamesgladden93@gmail.com"
+      ],
+      "role": "roles/cloudkms.admin"
+    },
+    {
+      "members": [
+        "serviceAccount:870067517337@cloudservices.gserviceaccount.com"
+      ],
+      "role": "roles/compute.instanceGroupManagerServiceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:service-870067517337@compute-system.iam.gserviceaccount.com"
+      ],
+      "role": "roles/compute.serviceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:870067517337-compute@developer.gserviceaccount.com"
+      ],
+      "role": "roles/editor"
+    },
+    {
+      "members": [
+        "user:jamesgladden93@gmail.com"
+      ],
+      "role": "roles/iam.workloadIdentityPoolAdmin"
+    },
+    {
+      "members": [
+        "user:jamesgladden93@gmail.com"
+      ],
+      "role": "roles/logging.admin"
+    },
+    {
+      "members": [
+        "user:jamesgladden93@gmail.com"
+      ],
+      "role": "roles/orgpolicy.policyViewer"
+    },
+    {
+      "members": [
+        "user:jamesgladden93@gmail.com"
+      ],
+      "role": "roles/owner"
+    },
+    {
+      "members": [
+        "user:jamesgladden93@gmail.com"
+      ],
+      "role": "roles/storage.admin"
+    },
+    {
+      "members": [
+        "serviceAccount:cgep-grc-gate-sa@lab-24-grcengineer.iam.gserviceaccount.com"
+      ],
+      "role": "roles/viewer"
+    }
+  ],
+  "etag": "BwZUFuWqagk=",
+  "version": 1
+}
