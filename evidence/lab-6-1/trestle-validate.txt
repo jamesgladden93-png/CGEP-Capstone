@@ -1,0 +1,15 @@
+=== Component Definition Validation ===
+VALID: Model /Users/jamesgladden/Desktop/Lab 6.1 CGEP/lab-6-1/component-definitions/compliant-s3-v1/component-definition.json passed the Validator to confirm the model passes all registered validation tests.
+
+=== Profile Validation ===
+VALID: Model /Users/jamesgladden/Desktop/Lab 6.1 CGEP/lab-6-1/profiles/cge-p-minimum/profile.json passed the Validator to confirm the model passes all registered validation tests.
+
+=== Profile Resolution ===
+Generated: cge-p-minimum-resolved/ containing sc-28, ac-3, au-3, cm-6 control markdown files
+
+=== Evidence Verification ===
+CHAIN INTACT for run 27579197994
+- Bundle: s3://cgep-lab-grc-evidence-vault-f43675c5/runs/27579197994/evidence-27579197994-a589ac779b780303b535d697e725d034115714d7.tar.gz
+- SHA256 verified: 504dd7b246d4383632dc5de268840ae01464fb5475b7e6a34696df9f44712d8a
+- Cosign signature verified from GitHub Actions OIDC
+- S3 retention active until 2026-12-31
